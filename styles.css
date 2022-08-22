@@ -1,0 +1,32 @@
+*{
+    margin: 0px;
+    padding: 0px;
+}
+body{
+    font-family: 'Open Sans', sans-serif;
+    background-color: rgb(0, 0, 0);
+   
+}
+.frame{
+    background-image: url("images/frame.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+canvas {
+    background-image: url("images/mountain1.png"); 
+    background-color: aquamarine;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+    top: 6rem;
+    left: 8rem;
+}
+.start{
+    width: 200px;
+    height: 100px;
+    background-color: rgb(214, 39, 39);
+    border-radius: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
