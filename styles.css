@@ -18,8 +18,8 @@ canvas {
     background-repeat: no-repeat;
     background-size: cover;
     position: relative;
-    top: 6rem;
-    left: 8rem;
+    /*top: 6rem;
+    left: 8rem; */
 }
 .start{
     width: 200px;

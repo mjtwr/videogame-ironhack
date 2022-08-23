@@ -44,13 +44,13 @@ class Heroe {
         }
     }
     saltar(){
-        if(this.x < 600){
-            this.saltar = true;
+        if(this.x < 800){
+            this.saltando = true;
         }
     }
     lanzarFlechas(){
-        const flecha = new Flechas(this.x + this.w, this.y + 20, 40, 80, flechaImg);
-        flechasArray.push(flecha);
+        const lanzaFlecha = new Flechas(this.x + this.w, this.y + 80, 70, 80, flechaImg);
+        flechasArray.push(lanzaFlecha);
         console.log("lanzando flechas!!")
     }
     morir(){}
@@ -61,18 +61,18 @@ class Heroe {
 
 //ENEMIGO: BOARS
 class Enemigo {
-    constructor(x,y,w,h,vida,image) {
+    constructor(x,y,w,h,image) {
         this.x = x;
         this.y = y;
         this.w = w;
         this.h = h;
-        this.vida = vida;
         this.image = image;
     }
     dibujarse(){
-        ctx.fillStyle = "white"
-        ctx.fillRect(this.x,this.y,this.w, this.h);
-        ctx.drawImage(this.image, this.x, this.y, this.w, this.h);    
+        //ctx.fillStyle = "white"
+        //ctx.fillRect(this.x,this.y,this.w, this.h);
+        ctx.drawImage(this.image,this.x,this.y,this.w,this.h);
+        this.x -= 4;
     }
 }
 
@@ -86,8 +86,6 @@ class Flechas {
         this.image = image;
     }
     dibujarse(){
-        ctx.fillStyle = "red"
-        ctx.fillRect(this.x,this.y,this.w, this.h);
         ctx.drawImage(this.image, this.x ,this.y,this.w, this.h);
         this.x += 4;   
     }
@@ -96,11 +94,11 @@ class Flechas {
 // PISO
 function dibujarPiso(){
     ctx.beginPath();
-    ctx.moveTo(0,500);
-    ctx.lineTo(1400,500);
+    ctx.moveTo(0,650);
+    ctx.lineTo(1600,650);
     ctx.lineWidth = 4;
     ctx.fillStyle = "green";
-    ctx.fillRect(0,500, 1400,200);
+    ctx.fillRect(0,650, 1600,300);
     ctx.stroke();
     ctx.closePath();
 
@@ -146,15 +144,16 @@ teclas();
 //CREAR ENEMIGOS RANDOM
 function crearEnemigos(){
     const num = Math.floor(Math.random() * 180)
-    if (num == 3){
-        const enemigo = new Enemigo (1200, 380, 180, 150, enemigoImg);
+    let alturaRandom = Math.floor(Math.random() * (700 - 500) + 500)
+    if (num == 4){
+        const enemigo = new Enemigo (1700, alturaRandom, 200, 170,enemigoImg);
         enemigosArray.push(enemigo);
     }
 }
 
         //INICIAR JUEGO
 function iniciarJuego(){
-    const heroe = new Heroe(50,400,300,200,100, heroeImg);
+    const heroe = new Heroe(50,600,450,300,100, heroeImg);
     teclas(heroe);
     console.log(heroe);
     heroe.dibujarse();
@@ -162,35 +161,41 @@ function iniciarJuego(){
   
 //SET INTERVAL
     setInterval(()=>{
-        ctx.clearRect(0,0,1400,700);
+        ctx.clearRect(0,0,1600,900);
         dibujarPiso();
         heroe.dibujarse();
         headerDatos();
 
         //salto
-        if(heroe.saltar === true){
+        if(heroe.saltando === true){
             //altura max de salto
-            if(heroe.y > 100){ //tope
+            if(heroe.y > 300){ //tope
                 heroe.y -= 12; // la "rapidez"
                 heroe.x += 5; // avanza
             }else{ //bajarlo
                 console.log("bajate")
-                heroe.saltar = false;
+                heroe.saltando = false;
             }
-           
         }
          //no estas saltando?
-         if (heroe.saltar === false && heroe.y < 290){
-            heroe.y += 12;
+         if (heroe.saltando === false && heroe.y < 600){
+            heroe.y += 5;
         }
-        enemigosArray.forEach((enemigo, index) =>{
+        enemigosArray.forEach((enemigo, i) =>{
             enemigo.dibujarse();
             if( enemigo.x <= heroe.x + heroe.w){
                 enemigosArray.splice(i,1);
+                heroe.vida -= 25;
+                if(heroe.vida < 25){
+                    console.log("Moriste")
+                }
             }
+        });
+        flechasArray.forEach((flecha) => {
+            flecha.dibujarse();
         })
-        crearEnemigos();
-//});
+    crearEnemigos();
+},1000/100);
 }
 
 iniciarJuego();
