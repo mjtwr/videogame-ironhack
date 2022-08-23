@@ -32,15 +32,26 @@ class Heroe {
         this.h = h;
         this.vida = vida;
         this.image = image;
+        this.score = 0;
     }
     avanzar(){
         if(this.x + this.w < 1350){
-            this.x += 25;
+            this.x += 40;
         }
     }
     retroceder(){
-        if(this.x > 0){
-            this.x -= 25;
+        if(this.x > 30){
+            this.x -= 40;
+        }
+    }
+    subir(){
+        if(this.y > 490){
+            this.y -= 40;
+        }
+    }
+    bajar(){
+        if(this.y <= 750){ 
+            this.y += 40;
         }
     }
     saltar(){
@@ -48,6 +59,7 @@ class Heroe {
             this.saltando = true;
         }
     }
+    
     lanzarFlechas(){
         const lanzaFlecha = new Flechas(this.x + this.w, this.y + 80, 70, 80, flechaImg);
         flechasArray.push(lanzaFlecha);
@@ -106,12 +118,12 @@ function dibujarPiso(){
 //dibujarPiso();
 
 //ENCABEZADO
-function headerDatos() {
+function headerDatos(vida, score) {
     ctx.font = "30px Open Sans";
     ctx.fillStyle = "black";
     ctx.fillText("Princess Mononoke", 580, 80);
-    ctx.fillText("Vida", 25, 80);
-    ctx.fillText("Score", 1100, 80);
+    ctx.fillText(`Vida: ${vida}`, 25, 80);
+    ctx.fillText(`Score: ${score}`, 1100, 80);
 
 }
 headerDatos();
@@ -121,20 +133,30 @@ function teclas(heroe) {
         console.log("teclaaa", evento.code);
         switch (evento.code) {
             case "ArrowUp":
+                heroe.subir();
                 //console.log("Saltar");
-                heroe.saltar();
+                
                 break;
             case "ArrowRight":
                 //console.log("Avanza");
                 heroe.avanzar();
                 break;
             case "ArrowLeft":
-                //console.log("Back up");
+                //
+                console.log("Back up");
                 heroe.retroceder();
+                break;
+            case "KeyC":
+                //console.log("Lanza flechaaa");
+                heroe.lanzarFlechas();
                 break;
             case "Space":
                 //console.log("Lanza flechaaa");
-                heroe.lanzarFlechas();
+                heroe.saltar();
+                break;
+            case "ArrowDown":
+                console.log("Baja");
+                heroe.bajar();
                 break;
         }
     });
@@ -143,9 +165,9 @@ teclas();
 
 //CREAR ENEMIGOS RANDOM
 function crearEnemigos(){
-    const num = Math.floor(Math.random() * 180)
+    const num = Math.floor(Math.random() * 100)
     let alturaRandom = Math.floor(Math.random() * (700 - 500) + 500)
-    if (num == 4){
+    if (num == 6){
         const enemigo = new Enemigo (1700, alturaRandom, 200, 170,enemigoImg);
         enemigosArray.push(enemigo);
     }
@@ -153,7 +175,7 @@ function crearEnemigos(){
 
         //INICIAR JUEGO
 function iniciarJuego(){
-    const heroe = new Heroe(50,600,450,300,100, heroeImg);
+    const heroe = new Heroe(50,600,350,200,100, heroeImg);
     teclas(heroe);
     console.log(heroe);
     heroe.dibujarse();
@@ -164,14 +186,14 @@ function iniciarJuego(){
         ctx.clearRect(0,0,1600,900);
         dibujarPiso();
         heroe.dibujarse();
-        headerDatos();
+        headerDatos(heroe.vida, heroe.score);
 
         //salto
         if(heroe.saltando === true){
             //altura max de salto
-            if(heroe.y > 300){ //tope
+            if(heroe.y > 200){ //tope
                 heroe.y -= 12; // la "rapidez"
-                heroe.x += 5; // avanza
+                heroe.x += 10; // avanza
             }else{ //bajarlo
                 console.log("bajate")
                 heroe.saltando = false;
@@ -183,16 +205,26 @@ function iniciarJuego(){
         }
         enemigosArray.forEach((enemigo, i) =>{
             enemigo.dibujarse();
-            if( enemigo.x <= heroe.x + heroe.w){
+            if( enemigo.x <= heroe.x + heroe.w && enemigo.y <= heroe.y + heroe.h && heroe.y <= enemigo.y + enemigo.h){
                 enemigosArray.splice(i,1);
-                heroe.vida -= 25;
-                if(heroe.vida < 25){
-                    console.log("Moriste")
+                heroe.vida -= 20;
+                if(heroe.vida < 19){
+                    alert("Moriste");
                 }
             }
         });
-        flechasArray.forEach((flecha) => {
+        flechasArray.forEach((flecha, flechasArrayIndex) => {
             flecha.dibujarse();
+            enemigosArray.forEach((enemigo, enemigosArrayIndex) =>{
+                if (enemigo.x <= flecha.x + flecha.w && enemigo.y <= flecha.y + flecha.h && flecha.y <= enemigo.y + enemigo.h) {
+                    enemigosArray.splice(enemigosArrayIndex, 1);
+                    flechasArray.splice(flechasArrayIndex,1);
+                    heroe.score += 10;
+                        if(heroe.score == 200) {
+                            alert("ganaste");
+                        }
+                }
+            })
         })
     crearEnemigos();
 },1000/100);
