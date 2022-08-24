@@ -46,34 +46,6 @@ body {
     bottom: 0;
     background-color: rgba(0, 0, 0, 0.4);
   }
-  a {
-    color: inherit;
-  }
-  .btn-howToPlay {
-    text-decoration-line: none;
-    display: inline-block;
-    margin-top: 50px;
-    padding: 20px 25px;
-    font-family: 'Open Sans', sans-serif;
-    font-size: 35px;
-    cursor: pointer;
-    text-align: center;
-    text-decoration: none;
-    outline: none;
-    color: #fff;
-    background-color: rgb(222, 62, 46);
-    border: none;
-    border-radius: 15px;
-    box-shadow: 0 9px rgb(111, 32, 24)
-  }
-  .btn-howToPlay:hover {
-    background-color: rgb(197, 59, 46);
-}
-.btn-howToPlay:active {
-    background-color: rgb(222, 62, 46);
-    box-shadow: 0 5px rgb(111, 32, 24); 
-    transform: translateY(4px);
-  }
   audio{
     display: flex;
     align-self: center;
@@ -88,20 +60,15 @@ body {
     text-align: center;
     
   }
-  .modal-teclas{
-    display: flex;
-    justify-content: center;
+  a {
+    color: inherit;
   }
-  .img-teclas{
-    width: 50%;
-    height: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  .btn-startGame{
+  
+  .btn-button {
     text-decoration-line: none;
-    margin: 100px;
+    display: inline-block;
+    margin-top: 70px;
+    margin-left: 70px;
     padding: 20px 25px;
     font-family: 'Open Sans', sans-serif;
     font-size: 35px;
@@ -113,11 +80,29 @@ body {
     background-color: rgb(222, 62, 46);
     border: none;
     border-radius: 15px;
-    box-shadow: 0 9px rgb(111, 32, 24);
+    box-shadow: 0 9px rgb(111, 32, 24)
+  }
+  .btn-button:hover {
+    background-color: rgb(197, 59, 46);
+}
+.btn-button:active {
+    background-color: rgb(222, 62, 46);
+    box-shadow: 0 5px rgb(111, 32, 24); 
+    transform: translateY(4px);
+  }
+ 
+  .modal-teclas{
+    display: flex;
+    justify-content: center;
+  }
+  .img-teclas{
+    width: 50%;
+    height: 50%;
     display: flex;
     justify-content: center;
     align-items: center;
   }
+
   .modal {
     position: relative;
     left: 0;
@@ -150,12 +135,11 @@ body {
     text-align: center;
     cursor: pointer;
     border-radius: 4px;
-    background-color: lightgray;
     margin-left: 20px;
 }
 
 .close-button:hover {
-    background-color: darkgray;
+    background-color: rgb(169, 169, 169);
 }
 
 .show-modal {

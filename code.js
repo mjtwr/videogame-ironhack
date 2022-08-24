@@ -1,12 +1,40 @@
 let btnStart = document.getElementsByClassName("start")[0];
-//btnStart.addEventListener("click", () =>{
-    console.log("Inicia el Juegooo!");
-//});
+btnStart.addEventListener("click", () =>{
+    console.log("start....")
+    clearInterval(idInterval);
+    iniciarJuego();
+});
+let btnStart2 = document.getElementsByClassName("start")[1];
+btnStart2.addEventListener("click", () =>{
+    console.log("start....")
+    clearInterval(idInterval);
+    iniciarJuego();
+});
+//ID INTERVAL
+let idInterval;
 
 //CANVAS
 let lienzo = document.getElementById("lienzo");
 let ctx = lienzo.getContext("2d");
 console.log(lienzo);
+
+//MODAL
+const modal = document.querySelector(".modal");
+const modalWinner = document.querySelector(".modal-winner");
+
+const closeButton = document.querySelector(".close-button");
+const closeButtonWinner = document.querySelector(".close-button-winner");
+
+
+function toggleModalWinner() {
+    modalWinner.classList.toggle("show-modal")
+}
+
+function toggleModal() {
+    modal.classList.toggle("show-modal")
+}
+closeButton.addEventListener("click", toggleModal);
+closeButtonWinner.addEventListener("click", toggleModalWinner);
 
 //IMAGENES
 const heroeImg = new Image()
@@ -217,7 +245,7 @@ function teclas(heroe) {
         }
     });
 }
-teclas();
+
 
 //CREAR ENEMIGOS RANDOM
 function crearEnemigos(){
@@ -248,7 +276,7 @@ function iniciarJuego(){
 
   
 //SET INTERVAL
-    setInterval(()=>{
+idInterval = setInterval(()=>{
         ctx.clearRect(0,0,1600,900);
         dibujarPiso();
         heroe.dibujarse();
@@ -277,9 +305,9 @@ function iniciarJuego(){
                 enemigosArray.splice(i,1);
                 if (heroe.vida >= 1){
                     heroe.vida -= 1;
-                } else {
-                    alert("perdiste");
-
+                } else if (heroe.vida <= 1){
+                    clearInterval(idInterval);
+                    toggleModal();
                 }
 
                 
@@ -303,8 +331,9 @@ function iniciarJuego(){
                     enemigosArray.splice(enemigosArrayIndex, 1);
                     flechasArray.splice(flechasArrayIndex,1);
                     heroe.score += 10;
-                        if(heroe.score == 200) {
-                            alert("ganaste");
+                        if(heroe.score > 200) {
+                            clearInterval(idInterval);
+                            toggleModalWinner();
                         }
                 }
             })
