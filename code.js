@@ -31,7 +31,9 @@ halfMaskImg.src = "images/half-mask.png"
 const enemigosArray = [];
 const flechasArray = [];
 const mascarasArray =[];
-console.log(mascarasArray);
+
+
+//console.log(mascarasArray);
 
 //PERSONAJE: ASHITAKA
 class Heroe {
@@ -128,6 +130,35 @@ class Mascaras {
     }
 }
 
+//VIDAS
+class Vidas {
+    constructor(x,y,w,h,image) {
+        this.x = x;
+        this.y = y;
+        this.w = w;
+        this.h = h;
+        this.image = image;
+    }
+    dibujarse(){
+        ctx.drawImage(this.image, this.x ,this.y,this.w, this.h);
+    } 
+}//         instanciar un objeto
+let vida1 = new Vidas (150,50,80,80, halfMaskImg);
+let vida2 = new Vidas (150,50,80,80, maskImg);
+let vida3 = new Vidas (230,50,80,80, halfMaskImg);
+let vida4 = new Vidas (230,50,80,80, maskImg);
+let vida5 = new Vidas (310,50,80,80, halfMaskImg);
+let vida6 = new Vidas (310,50,80,80, maskImg);
+
+const vidasArray = [vida1, vida2, vida3, vida4, vida5, vida6];
+//console.log(vidasArray)
+function dibujarVidas(heroevida){
+    for (let i = 0; i < heroevida; i++) {
+        vidasArray[i].dibujarse();
+    }
+   
+}
+
 // PISO
 function dibujarPiso(){
     ctx.beginPath();
@@ -203,16 +234,16 @@ function crearMascaras(){
      if (num == 2) {
         const mask = new Mascaras (1700, 300, 100,100, maskImg);
         mascarasArray.push(mask);
-        console.log("mascaraa");
+        //console.log("mascaraa");
      }
 }
 
 
 //INICIAR JUEGO
 function iniciarJuego(){
-    const heroe = new Heroe(50,600,350,200,100, heroeImg);
+    const heroe = new Heroe(50,600,350,200,6, heroeImg);
     teclas(heroe);
-    console.log(heroe);
+    //console.log(heroe);
     heroe.dibujarse();
 
   
@@ -222,7 +253,8 @@ function iniciarJuego(){
         dibujarPiso();
         heroe.dibujarse();
         headerDatos(heroe.vida, heroe.score);
-
+        dibujarVidas(heroe.vida);
+        
         //salto
         if(heroe.saltando === true){
             //altura max de salto
@@ -230,7 +262,7 @@ function iniciarJuego(){
                 heroe.y -= 12; // la "rapidez"
                 heroe.x += 5; // avanza
             }else{ //bajarlo
-                console.log("bajate")
+                //console.log("bajate")
                 heroe.saltando = false;
             }
         }
@@ -243,17 +275,25 @@ function iniciarJuego(){
             enemigo.dibujarse();
             if( enemigo.x <= heroe.x + heroe.w && enemigo.y <= heroe.y + heroe.h && heroe.y <= enemigo.y + enemigo.h){
                 enemigosArray.splice(i,1);
-                heroe.vida -= 20;
-                if(heroe.vida < 19){
-                    alert("Moriste");
+                if (heroe.vida >= 1){
+                    heroe.vida -= 1;
+                } else {
+                    alert("perdiste");
+
                 }
+
+                
+              
             }
         });
         mascarasArray.forEach((mask, i) => {
             mask.dibujarse();
             if (mask.x <= heroe.x + heroe.w && mask.y <= heroe.y + heroe.h && heroe.y <= mask.y + mask.h){
                  mascarasArray.splice(i, 1);
-                 heroe.vida += 33.33
+                 
+                 if(heroe.vida <5){
+                    heroe.vida += 1
+                 }
              }
          });
         flechasArray.forEach((flecha, flechasArrayIndex) => {
@@ -264,7 +304,7 @@ function iniciarJuego(){
                     flechasArray.splice(flechasArrayIndex,1);
                     heroe.score += 10;
                         if(heroe.score == 200) {
-                            //alert("ganaste");
+                            alert("ganaste");
                         }
                 }
             })
@@ -273,7 +313,7 @@ function iniciarJuego(){
         
     crearEnemigos();
     crearMascaras();
-},1000/100);
+},10);
 }
 
 iniciarJuego();
