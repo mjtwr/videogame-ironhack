@@ -4,22 +4,27 @@
 }
 body{
     font-family: 'Open Sans', sans-serif;
-    background-color: rgb(231, 51, 51);
     position: relative;
+    background-image: url("images/fondopm.png");
+    background-size: cover;
+    background-repeat: no-repeat;
 }
 
 .frame{
-        background-color: rgb(3, 87, 55,0.8);
+        background-color: rgb(3, 87, 55,0);
         width: 100vw;
         height:100vh;
-        /*background-image: url("images/frame.png");*/
-        background-size: cover;
-        background-repeat: no-repeat;
+       
         position: absolute;
     }
 
 canvas {
-    margin: 200px 290px;
+    display:block;
+    margin: auto;
+    position: absolute;
+    top: 150px;
+    left: 0;
+    z-index:1;
     background-image: url("images/fondoanimated.gif"); 
     background-repeat: no-repeat;
     background-size: cover;
@@ -59,26 +64,33 @@ a {
   }
  
 .modal {
-    background-color: blueviolet;
+    /*background-color: rgb(226, 43, 125);*/
     position: absolute;
-    margin: 0px 800px;
+    margin: 0px;
     opacity: 0;
     visibility: hidden;
     transform: scale(1.1);
     transition: visibility 0s linear 0.25s, opacity 0.25s 0s, transform 0.25s;
     z-index:99;
-    width: 1000px;
-    height: 1000px;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 .modal-winner {
     position: absolute;
-    margin: 0px 800px;
-    width: 50%;
-    height: 200%;
+    margin: 0px;
     opacity: 0;
     visibility: hidden;
     transform: scale(1.1);
     transition: visibility 0s linear 0.25s, opacity 0.25s 0s, transform 0.25s;
+    z-index:99;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
    
 }
 
@@ -86,10 +98,10 @@ a {
     position: absolute;
     width: 900px;
     height: 500px;
-    transform: translate(-50%, -50%);
+    /*transform: translate(-50%, -50%);*/
     color: #fff;
-    /*background-color: rgba(255, 255, 255, 0.803);
-    background-image: url("images/youlost.gif");*/
+    background-color: rgba(255, 255, 255, 0.803);
+    background-image: url("images/youlost.gif");
     background-repeat: no-repeat;
     background-position: stretch;    
     background-size: 100% 100%;
@@ -102,8 +114,8 @@ a {
 .modal-content-winner {
     position: absolute;
     width: 900px;
-    height: 700px;
-    transform: translate(-50%, -50%);
+    height: 600px;
+    /*transform: translate(-50%, -50%);*/
     color: #fff;
     background-color: rgba(255, 255, 255, 0.803);
     background-image: url("images/youwin.gif");
@@ -115,10 +127,12 @@ a {
     margin: 30px;
     
 }
-
-/*.img{
+img{
     padding: 0px 150px;
-}*/
+}*
+.img-win{
+ padding: 50px 150px 50px 250px;
+}
 p{
     color: rgb(255, 255, 255);
     font-family: 'Open Sans', sans-serif;
@@ -129,9 +143,7 @@ p{
 }
 
 .show-modal {
-    background-color: blue;
-    width: 1000px;
-    height: 1000px;
+    /*background-color: blue;*/
     position: absolute;
     opacity: 1;
     visibility: visible;
