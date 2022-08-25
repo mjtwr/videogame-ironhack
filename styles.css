@@ -4,38 +4,35 @@
 }
 body{
     font-family: 'Open Sans', sans-serif;
-    background-color: rgb(0, 0, 0);
+    background-color: rgb(14, 210, 43);
+    width: 100vw;
+    height: 100vh;
    
 }
 .frame{
-    background-image: url("images/frame.png");
+    /*background-image: url("images/frame.png"); */
     background-size: cover;
     background-repeat: no-repeat;
 }
 canvas {
-    background-image: url("images/mountain1.png"); 
-    background-color: aquamarine;
+    margin: 50px 50px;
+    background-image: url("images/fondoanimated.gif"); 
     background-repeat: no-repeat;
     background-size: cover;
     position: relative;
     /*top: 6rem;
     left: 8rem; */
 }
-.start{
-    width: 100;
-    height: 100;
-    background-color: rgb(214, 39, 39);
-}
 
 a {
     color: inherit;
   }
   
-.btn-button {
+.start {
     text-decoration-line: none;
     display: inline-block;
-    margin-top: 70px;
-    margin-left: 70px;
+    margin-top: 50px;
+    margin-left: 350px;
     padding: 20px 25px;
     font-family: 'Open Sans', sans-serif;
     font-size: 35px;
@@ -58,50 +55,66 @@ a {
     transform: translateY(4px);
   }
  
-/*.modal-display{
-    display: flex;
-    justify-content: center;
-  }
-*/
 .modal {
-    position: relative;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(176, 23, 23, 0.5);
+    margin: 0px 800px;
+    width: 50%;
+    height: 200%;
     opacity: 0;
     visibility: hidden;
     transform: scale(1.1);
     transition: visibility 0s linear 0.25s, opacity 0.25s 0s, transform 0.25s;
+    display: flex;
 }
 .modal-winner {
-    position: relative;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(176, 23, 23, 0.5);
+    margin: 0px 800px;
+    width: 50%;
+    height: 200%;
     opacity: 0;
     visibility: hidden;
     transform: scale(1.1);
     transition: visibility 0s linear 0.25s, opacity 0.25s 0s, transform 0.25s;
+    display: flex;
 }
-
 
 .modal-content {
-    position: absolute;
-    top: 50%;
-    left: 50%;
+    width: 900px;
+    height: 500px;
     transform: translate(-50%, -50%);
     color: #fff;
-    background-color: rgba(3, 9, 66, 0.803);
-    padding: 30px;
-    width: 80%;
+    background-color: rgba(255, 255, 255, 0.803);
+    background-image: url("images/youlost.gif");
+    background-repeat: no-repeat;
+    background-position: stretch;    
+background-size: 100% 100%;
+    padding: 50px;
     border-radius: 20px;
-    margin-bottom: 80px;
+    margin: 30px;
 }
-
+.modal-content-winner {
+    width: 900px;
+    height: 700px;
+    transform: translate(-50%, -50%);
+    color: #fff;
+    background-color: rgba(255, 255, 255, 0.803);
+    background-image: url("images/youwin.gif");
+    background-repeat: no-repeat;
+    background-position: stretch;
+    background-size: 100% 100%;
+    padding: 50px;
+    border-radius: 20px;
+    margin: 30px;
+}
+img{
+    padding: 0px 150px;
+}
+p{
+    color: rgb(255, 255, 255);
+    font-family: 'Open Sans', sans-serif;
+    text-align: center;
+    font-weight: 700;
+    font-size: 40px;
+    padding: 0px 250px;
+}
 
 .show-modal {
     opacity: 1;
@@ -109,10 +122,3 @@ a {
     transform: scale(1.0);
     transition: visibility 0s linear 0s, opacity 0.25s 0s, transform 0.25s;
 }
-.img-ganaste{
-    width: 50%;
-    height: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }

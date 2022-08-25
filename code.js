@@ -48,12 +48,21 @@ flechaImg.src = "images/arrow.png"
 
 const maskImg = new Image()
 maskImg.src = "images/mask.png"
-console.log(maskImg);
 
 const halfMaskImg = new Image ()
 halfMaskImg.src = "images/half-mask.png"
 
+const livesImg = new Image ()
+livesImg.src = "images/lives.png"
 
+const scoreImg = new Image ()
+scoreImg.src = "images/score.png"
+
+const tituloImg = new Image ()
+tituloImg.src = "images/titulo.png"
+
+const grassImg = new Image ()
+grassImg.src = "images/grass.png"
 
 //ARRAYS DE ENEMIGOS Y FLECHAS
 const enemigosArray = [];
@@ -189,17 +198,13 @@ function dibujarVidas(heroevida){
 
 // PISO
 function dibujarPiso(){
-    ctx.beginPath();
-    ctx.moveTo(0,650);
-    ctx.lineTo(1600,650);
-    ctx.lineWidth = 4;
-    ctx.fillStyle = "green";
-    ctx.fillRect(0,650, 1600,300);
-    ctx.stroke();
-    ctx.closePath();
+    //ctx.drawImage(0,650,1600,300, grassImg);
+    //ctx.fillStyle = "green";
+    //ctx.fillRect(0,650, 1600,300);
+    
+  
 
 }
-//dibujarPiso();
 
 //ENCABEZADO
 function headerDatos(vida, score) {
@@ -207,10 +212,11 @@ function headerDatos(vida, score) {
     ctx.fillStyle = "black";
     ctx.fillText("Princess Mononoke", 580, 80);
     ctx.fillText(`Vida:`, 25, 80);
-    ctx.fillText(`Score: ${score}`, 1100, 80);
-
+    ctx.fillText(`${score}`, 1100, 80);
+    //ctx.drawImage(10,50,40,30,livesImg);
 }
 headerDatos();
+
 //ESCUCHAR TECLAS
 function teclas(heroe) {
     document.addEventListener("keyup", (evento)=> {
@@ -271,7 +277,6 @@ function crearMascaras(){
 function iniciarJuego(){
     const heroe = new Heroe(50,600,350,200,6, heroeImg);
     teclas(heroe);
-    //console.log(heroe);
     heroe.dibujarse();
 
   
