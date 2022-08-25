@@ -5,16 +5,17 @@
 body{
     font-family: 'Open Sans', sans-serif;
     background-color: rgb(231, 51, 51);
+    position: relative;
 }
 
 .frame{
         background-color: rgb(3, 87, 55,0.8);
         width: 100vw;
         height:100vh;
-        background-image: url("images/frame.png");
+        /*background-image: url("images/frame.png");*/
         background-size: cover;
         background-repeat: no-repeat;
-        position: relative;
+        position: absolute;
     }
 
 canvas {
@@ -59,13 +60,18 @@ a {
  
 .modal {
     background-color: blueviolet;
+    position: absolute;
     margin: 0px 800px;
     opacity: 0;
     visibility: hidden;
     transform: scale(1.1);
     transition: visibility 0s linear 0.25s, opacity 0.25s 0s, transform 0.25s;
+    z-index:99;
+    width: 1000px;
+    height: 1000px;
 }
 .modal-winner {
+    position: absolute;
     margin: 0px 800px;
     width: 50%;
     height: 200%;
@@ -77,20 +83,24 @@ a {
 }
 
 .modal-content {
+    position: absolute;
     width: 900px;
     height: 500px;
     transform: translate(-50%, -50%);
     color: #fff;
-    background-color: rgba(255, 255, 255, 0.803);
-    background-image: url("images/youlost.gif");
+    /*background-color: rgba(255, 255, 255, 0.803);
+    background-image: url("images/youlost.gif");*/
     background-repeat: no-repeat;
     background-position: stretch;    
     background-size: 100% 100%;
     padding: 50px;
     border-radius: 20px;
     margin: 30px;
+    
+    
 }
 .modal-content-winner {
+    position: absolute;
     width: 900px;
     height: 700px;
     transform: translate(-50%, -50%);
@@ -103,10 +113,12 @@ a {
     padding: 50px;
     border-radius: 20px;
     margin: 30px;
+    
 }
-img{
+
+/*.img{
     padding: 0px 150px;
-}
+}*/
 p{
     color: rgb(255, 255, 255);
     font-family: 'Open Sans', sans-serif;
@@ -117,8 +129,18 @@ p{
 }
 
 .show-modal {
+    background-color: blue;
+    width: 1000px;
+    height: 1000px;
+    position: absolute;
     opacity: 1;
     visibility: visible;
     transform: scale(1.0);
     transition: visibility 0s linear 0s, opacity 0.25s 0s, transform 0.25s;
+    z-index:99;
+}
+
+.audiocontrol{
+    position: absolute;
+    background-color: blue;
 }

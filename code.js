@@ -16,7 +16,7 @@ let lienzo = document.getElementById("lienzo");
 let ctx = lienzo.getContext("2d");
 
 
-//MODAL
+//MODALES
 const modal = document.querySelector(".modal");
 const modalWinner = document.querySelector(".modal-winner");
 
@@ -62,7 +62,7 @@ tituloImg.src = "images/titulo.png"
 const floorImg = new Image ()
 floorImg.src = "images/floor.png"
 
-//ARRAYS DE ENEMIGOS Y FLECHAS
+//ARRAYS DE ENEMIGOS, FLECHAS Y MASCARAS
 const enemigosArray = [];
 const flechasArray = [];
 const mascarasArray =[];
@@ -174,7 +174,7 @@ class Vidas {
     dibujarse(){
         ctx.drawImage(this.image, this.x ,this.y,this.w, this.h);
     } 
-}//         instanciar un objeto
+}
 let vida1 = new Vidas (210,50,80,80, halfMaskImg);
 let vida2 = new Vidas (210,50,80,80, maskImg);
 let vida3 = new Vidas (300,50,80,80, halfMaskImg);
