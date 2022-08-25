@@ -5,7 +5,7 @@
 body{
     font-family: 'Open Sans', sans-serif;
     position: relative;
-    background-image: url("images/fondopm.png");
+    background-image: url("images/fondoforest.jpeg");
     background-size: cover;
     background-repeat: no-repeat;
 }
@@ -153,6 +153,8 @@ p{
 }
 
 .audiocontrol{
-    position: absolute;
-    background-color: blue;
+    position: fixed;
+    top: 50px;
+    right: 50px;
 }
+
