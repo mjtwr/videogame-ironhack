@@ -15,14 +15,11 @@ let idInterval;
 let lienzo = document.getElementById("lienzo");
 let ctx = lienzo.getContext("2d");
 
-
 //MODALES
 const modal = document.querySelector(".modal");
 const modalWinner = document.querySelector(".modal-winner");
-
 const closeButton = document.querySelector(".close-button");
 const closeButtonWinner = document.querySelector(".close-button-winner");
-
 
 function toggleModalWinner() {
     modalWinner.classList.toggle("show-modal")
@@ -193,11 +190,6 @@ function dibujarVidas(heroevida){
 // PISO
 function dibujarPiso(){
     ctx.drawImage(floorImg, 0,450,1600,500);
-    //ctx.fillStyle = "green";
-    //ctx.fillRect(0,650, 1600,300);
-    
-  
-
 }
 
 //ENCABEZADO
@@ -239,7 +231,6 @@ function teclas(heroe) {
     });
 }
 
-
 //CREAR ENEMIGOS RANDOM
 function crearEnemigos(){
     let num = Math.floor(Math.random() * 100)
@@ -258,14 +249,12 @@ function crearMascaras(){
      }
 }
 
-
 //INICIAR JUEGO
 function iniciarJuego(){
     const heroe = new Heroe(50,600,350,200,6, heroeImg);
     teclas(heroe);
     heroe.dibujarse();
 
-  
 //SET INTERVAL
 idInterval = setInterval(()=>{
         ctx.clearRect(0,0,1600,900);
@@ -299,10 +288,7 @@ idInterval = setInterval(()=>{
                     clearInterval(idInterval);
                     toggleModal();
                 } 
-                }
-
-                
-              
+                }       
             }
         });
         mascarasArray.forEach((mask, i) => {
@@ -323,13 +309,12 @@ idInterval = setInterval(()=>{
                     flechasArray.splice(flechasArrayIndex,1);
                     heroe.score += 10;
                         if(heroe.score > 200) {
-                            clearInterval(idInterval);
-                            toggleModalWinner();
+                        clearInterval(idInterval);
+                        toggleModalWinner();
                         }
                 }
             })
         })
-      
         
     crearEnemigos();
     crearMascaras();
