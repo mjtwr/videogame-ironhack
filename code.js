@@ -1,12 +1,10 @@
 let btnStart = document.getElementsByClassName("start")[0];
 btnStart.addEventListener("click", () =>{
-    console.log("start....")
     clearInterval(idInterval);
     iniciarJuego();
 });
 let btnStart2 = document.getElementsByClassName("start")[1];
 btnStart2.addEventListener("click", () =>{
-    console.log("start....")
     clearInterval(idInterval);
     iniciarJuego();
 });
@@ -16,7 +14,7 @@ let idInterval;
 //CANVAS
 let lienzo = document.getElementById("lienzo");
 let ctx = lienzo.getContext("2d");
-console.log(lienzo);
+
 
 //MODAL
 const modal = document.querySelector(".modal");
@@ -61,16 +59,14 @@ scoreImg.src = "images/score.png"
 const tituloImg = new Image ()
 tituloImg.src = "images/titulo.png"
 
-const grassImg = new Image ()
-grassImg.src = "images/grass.png"
+const floorImg = new Image ()
+floorImg.src = "images/floor.png"
 
 //ARRAYS DE ENEMIGOS Y FLECHAS
 const enemigosArray = [];
 const flechasArray = [];
 const mascarasArray =[];
 
-
-//console.log(mascarasArray);
 
 //PERSONAJE: ASHITAKA
 class Heroe {
@@ -112,7 +108,6 @@ class Heroe {
     lanzarFlechas(){
         const lanzaFlecha = new Flechas(this.x + this.w, this.y + 80, 70, 80, flechaImg);
         flechasArray.push(lanzaFlecha);
-        console.log("lanzando flechas!!")
     }
     morir(){}
     dibujarse(){
@@ -180,15 +175,14 @@ class Vidas {
         ctx.drawImage(this.image, this.x ,this.y,this.w, this.h);
     } 
 }//         instanciar un objeto
-let vida1 = new Vidas (150,50,80,80, halfMaskImg);
-let vida2 = new Vidas (150,50,80,80, maskImg);
-let vida3 = new Vidas (230,50,80,80, halfMaskImg);
-let vida4 = new Vidas (230,50,80,80, maskImg);
-let vida5 = new Vidas (310,50,80,80, halfMaskImg);
-let vida6 = new Vidas (310,50,80,80, maskImg);
+let vida1 = new Vidas (210,50,80,80, halfMaskImg);
+let vida2 = new Vidas (210,50,80,80, maskImg);
+let vida3 = new Vidas (300,50,80,80, halfMaskImg);
+let vida4 = new Vidas (300,50,80,80, maskImg);
+let vida5 = new Vidas (390,50,80,80, halfMaskImg);
+let vida6 = new Vidas (390,50,80,80, maskImg);
 
 const vidasArray = [vida1, vida2, vida3, vida4, vida5, vida6];
-//console.log(vidasArray)
 function dibujarVidas(heroevida){
     for (let i = 0; i < heroevida; i++) {
         vidasArray[i].dibujarse();
@@ -198,7 +192,7 @@ function dibujarVidas(heroevida){
 
 // PISO
 function dibujarPiso(){
-    //ctx.drawImage(0,650,1600,300, grassImg);
+    ctx.drawImage(floorImg, 0,450,1600,500);
     //ctx.fillStyle = "green";
     //ctx.fillRect(0,650, 1600,300);
     
@@ -208,44 +202,37 @@ function dibujarPiso(){
 
 //ENCABEZADO
 function headerDatos(vida, score) {
-    ctx.font = "30px Open Sans";
-    ctx.fillStyle = "black";
-    ctx.fillText("Princess Mononoke", 580, 80);
-    ctx.fillText(`Vida:`, 25, 80);
-    ctx.fillText(`${score}`, 1100, 80);
-    //ctx.drawImage(10,50,40,30,livesImg);
+    ctx.font = "80px Open Sans";
+    ctx.fillStyle = "white";
+    ctx.fillText(`${score}`, 1400, 120);
+    ctx.drawImage(livesImg, 10, 50, 190, 70);
+    ctx.drawImage(scoreImg, 1200, 50, 190, 70);
+    ctx.drawImage(tituloImg, 650, 50, 350, 150);
 }
-headerDatos();
 
 //ESCUCHAR TECLAS
 function teclas(heroe) {
     document.addEventListener("keyup", (evento)=> {
-        console.log("teclaaa", evento.code);
         switch (evento.code) {
             case "ArrowUp":
                 heroe.subir();
-                //console.log("Saltar");
                 
                 break;
             case "ArrowRight":
-                //console.log("Avanza");
                 heroe.avanzar();
                 break;
             case "ArrowLeft":
-                //
-                console.log("Back up");
+                 ("Back up");
                 heroe.retroceder();
                 break;
             case "KeyC":
-                //console.log("Lanza flechaaa");
                 heroe.lanzarFlechas();
                 break;
             case "Space":
-                //console.log("Lanza flechaaa");
                 heroe.saltar();
                 break;
             case "ArrowDown":
-                console.log("Baja");
+            
                 heroe.bajar();
                 break;
         }
@@ -256,7 +243,7 @@ function teclas(heroe) {
 //CREAR ENEMIGOS RANDOM
 function crearEnemigos(){
     let num = Math.floor(Math.random() * 100)
-    let alturaRandom = Math.floor(Math.random() * (700 - 500) + 500)
+    let alturaRandom = Math.floor(Math.random() * (700 - 550) + 550)
     if (num == 6){
         const enemigo = new Enemigo (1700, alturaRandom, 200, 170,enemigoImg);
         enemigosArray.push(enemigo);
@@ -268,7 +255,6 @@ function crearMascaras(){
      if (num == 2) {
         const mask = new Mascaras (1700, 300, 100,100, maskImg);
         mascarasArray.push(mask);
-        //console.log("mascaraa");
      }
 }
 
@@ -295,7 +281,6 @@ idInterval = setInterval(()=>{
                 heroe.y -= 12; // la "rapidez"
                 heroe.x += 5; // avanza
             }else{ //bajarlo
-                //console.log("bajate")
                 heroe.saltando = false;
             }
         }
@@ -310,9 +295,10 @@ idInterval = setInterval(()=>{
                 enemigosArray.splice(i,1);
                 if (heroe.vida >= 1){
                     heroe.vida -= 1;
-                } else if (heroe.vida <= 1){
+                    if (heroe.vida == 0){
                     clearInterval(idInterval);
                     toggleModal();
+                } 
                 }
 
                 
