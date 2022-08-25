@@ -2,7 +2,7 @@
     margin: 0px;
     padding: 0px;
 }
-body{
+body {
     font-family: 'Open Sans', sans-serif;
     position: relative;
     background-image: url("images/fondoforest.jpeg");
@@ -10,7 +10,7 @@ body{
     background-repeat: no-repeat;
 }
 
-.frame{
+.frame {
         background-color: rgb(3, 87, 55,0);
         width: 100vw;
         height:100vh;
@@ -29,7 +29,6 @@ canvas {
     background-repeat: no-repeat;
     background-size: cover;
     position: relative;
-   
 }
 
 a {
@@ -54,17 +53,18 @@ a {
     border-radius: 15px;
     box-shadow: 0 9px rgb(111, 32, 24)
   }
+
 .btn-button:hover {
     background-color: rgb(197, 59, 46);
 }
+
 .btn-button:active {
     background-color: rgb(222, 62, 46);
     box-shadow: 0 5px rgb(111, 32, 24); 
     transform: translateY(4px);
-  }
+}
  
 .modal {
-    /*background-color: rgb(226, 43, 125);*/
     position: absolute;
     margin: 0px;
     opacity: 0;
@@ -78,6 +78,7 @@ a {
     align-items: center;
     justify-content: center;
 }
+
 .modal-winner {
     position: absolute;
     margin: 0px;
@@ -98,7 +99,6 @@ a {
     position: absolute;
     width: 900px;
     height: 500px;
-    /*transform: translate(-50%, -50%);*/
     color: #fff;
     background-color: rgba(255, 255, 255, 0.803);
     background-image: url("images/youlost.gif");
@@ -108,14 +108,12 @@ a {
     padding: 50px;
     border-radius: 20px;
     margin: 30px;
-    
-    
 }
+
 .modal-content-winner {
     position: absolute;
     width: 900px;
     height: 600px;
-    /*transform: translate(-50%, -50%);*/
     color: #fff;
     background-color: rgba(255, 255, 255, 0.803);
     background-image: url("images/youwin.gif");
@@ -124,16 +122,18 @@ a {
     background-size: 100% 100%;
     padding: 50px;
     border-radius: 20px;
-    margin: 30px;
-    
+    margin: 30px; 
 }
-img{
+
+img {
     padding: 0px 150px;
 }*
-.img-win{
+
+.img-win {
  padding: 50px 150px 50px 250px;
 }
-p{
+
+p {
     color: rgb(255, 255, 255);
     font-family: 'Open Sans', sans-serif;
     text-align: center;
@@ -143,7 +143,6 @@ p{
 }
 
 .show-modal {
-    /*background-color: blue;*/
     position: absolute;
     opacity: 1;
     visibility: visible;
@@ -152,7 +151,7 @@ p{
     z-index:99;
 }
 
-.audiocontrol{
+.audiocontrol {
     position: fixed;
     top: 50px;
     right: 50px;
