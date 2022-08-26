@@ -257,7 +257,6 @@ function iniciarJuego(){
     enemigosArray = [];
     flechasArray = [];
     mascarasArray =[];
-    console.log("ARRRRAAAAYYYYSS", enemigosArray, flechasArray,mascarasArray);
 
 //SET INTERVAL
 idInterval = setInterval(()=>{
