@@ -63,6 +63,8 @@ floorImg.src = "images/floor.png"
 let enemigosArray = [];
 let flechasArray = [];
 let mascarasArray =[];
+console.log("ARRAYsssss", enemigosArray, flechasArray, mascarasArray);
+
 
 
 //PERSONAJE: ASHITAKA
@@ -257,6 +259,7 @@ function iniciarJuego(){
     enemigosArray = [];
     flechasArray = [];
     mascarasArray =[];
+    console.log("ARRAY", enemigosArray, flechasArray, mascarasArray);
 
 //SET INTERVAL
 idInterval = setInterval(()=>{
@@ -313,6 +316,9 @@ idInterval = setInterval(()=>{
                     heroe.score += 10;
                         if(heroe.score > 200) {
                         clearInterval(idInterval);
+                        enemigosArray = [];
+                        flechasArray = [];
+                        mascarasArray =[];
                         toggleModalWinner();
                         }
                 }
