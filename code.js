@@ -60,9 +60,9 @@ const floorImg = new Image ()
 floorImg.src = "images/floor.png"
 
 //ARRAYS DE ENEMIGOS, FLECHAS Y MASCARAS
-const enemigosArray = [];
-const flechasArray = [];
-const mascarasArray =[];
+let enemigosArray = [];
+let flechasArray = [];
+let mascarasArray =[];
 
 
 //PERSONAJE: ASHITAKA
@@ -254,6 +254,10 @@ function iniciarJuego(){
     const heroe = new Heroe(50,600,350,200,6, heroeImg);
     teclas(heroe);
     heroe.dibujarse();
+    enemigosArray = [];
+    flechasArray = [];
+    mascarasArray =[];
+    console.log("ARRRRAAAAYYYYSS", enemigosArray, flechasArray,mascarasArray);
 
 //SET INTERVAL
 idInterval = setInterval(()=>{
